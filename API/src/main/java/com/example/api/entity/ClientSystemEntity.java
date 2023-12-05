@@ -9,6 +9,8 @@ public class ClientSystemEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cod_cad_sistema")
     private Long id;
+    @Column(name = "nome_cliente", nullable = false)
+    private String clientName;
     @Column(name = "protocolo", nullable = false)
     private String protocol;
     @Column(name = "dominio", nullable = false)
