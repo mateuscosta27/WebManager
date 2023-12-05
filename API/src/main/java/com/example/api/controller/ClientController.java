@@ -1,9 +1,8 @@
 package com.example.api.controller;
 
 
-import com.example.api.entity.ClientSystemEntity;
-import com.example.api.service.ClientSystemService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.api.entity.Client;
+import com.example.api.service.ClientService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,32 +12,32 @@ import java.util.List;
 
 public class ClientController {
 
-    public ClientController(ClientSystemService clientSystemService) {
-        this.clientSystemService = clientSystemService;
+    public ClientController(ClientService clientService) {
+        this.clientService = clientService;
     }
 
-    private ClientSystemService clientSystemService;
+    private ClientService clientService;
 
 
     @GetMapping
-    public List<ClientSystemEntity> read() {
-        return clientSystemService.getAllSystems();
+    public List<Client> read() {
+        return clientService.getAllSystems();
     }
 
     @PostMapping
-    public void create(@RequestBody ClientSystemEntity clientSystemEntity) {
-        clientSystemService.createClient(clientSystemEntity);
+    public void create(@RequestBody Client client) {
+        clientService.createClient(client);
 
     }
 
     @PutMapping
-    public void update(@RequestBody ClientSystemEntity clientSystemEntity) {
-        clientSystemService.updateClient(clientSystemEntity);
+    public void update(@RequestBody Client client) {
+        clientService.updateClient(client);
     }
 
     @DeleteMapping("{id}")
     public void delete(@PathVariable Long id){
-        clientSystemService.deleteClient(id);
+        clientService.deleteClient(id);
     }
 
 
