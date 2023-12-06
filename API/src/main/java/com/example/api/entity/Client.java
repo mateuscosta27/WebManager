@@ -7,9 +7,8 @@ import jakarta.persistence.*;
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cod_cad_sistema")
     private Long id;
-    @Column(name = "nome_cliente", nullable = false)
+    @Column(name = "nome", nullable = false)
     private String clientName;
     @Column(name = "protocolo", nullable = false)
     private String protocol;
