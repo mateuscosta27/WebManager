@@ -78,8 +78,8 @@ public class ClientEntity {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof ClientEntity clientEntity)) return false;
-        return Objects.equals(id, clientEntity.id);
+        if (!(o instanceof ClientEntity that)) return false;
+        return Objects.equals(id, that.id);
     }
 
     @Override
