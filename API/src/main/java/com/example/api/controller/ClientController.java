@@ -1,7 +1,7 @@
 package com.example.api.controller;
 
 
-import com.example.api.entity.Client;
+import com.example.api.dto.ClientDTO;
 import com.example.api.service.ClientService;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,23 +16,23 @@ public class ClientController {
         this.clientService = clientService;
     }
 
-    private ClientService clientService;
+    private final ClientService clientService;
 
 
     @GetMapping
-    public List<Client> read() {
+    public List<ClientDTO> read() {
         return clientService.getAllSystems();
     }
 
     @PostMapping
-    public void create(@RequestBody Client client) {
-        clientService.createClient(client);
+    public void create(@RequestBody ClientDTO clientDTO) {
+        clientService.createClient(clientDTO);
 
     }
 
     @PutMapping
-    public void update(@RequestBody Client client) {
-        clientService.updateClient(client);
+    public void update(@RequestBody ClientDTO clientDTO) {
+        clientService.updateClient(clientDTO);
     }
 
     @DeleteMapping("{id}")
