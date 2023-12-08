@@ -1,11 +1,17 @@
 package com.example.api.entity;
-import com.example.api.dto.ClientDTO;
+import com.example.api.dto.ClientRequestDTO;
+import com.example.api.dto.ClientResponseDTO;
 import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.BeanUtils;
-import java.util.Objects;
 
 @Entity
 @Table(name = "tb_sistema")
+@Getter
+@Setter
+@EqualsAndHashCode(of = "id")
 public class ClientEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,73 +23,17 @@ public class ClientEntity {
     @Column(name = "dominio", nullable = false)
     private String domain;
     @Column(name = "porta", nullable = false)
-    private String port;
+    private Integer port;
     @Column(name = "situacao", nullable = false)
     private boolean status;
 
     public ClientEntity(){}
-    public ClientEntity(ClientDTO clientDTO){
-        BeanUtils.copyProperties(clientDTO, this);
+    public ClientEntity(ClientRequestDTO clientRequestDTO){
+        this.clientName = clientRequestDTO.clientName();
+        this.protocol = clientRequestDTO.protocol();
+        this.domain = clientRequestDTO.domain();
+        this.port = clientRequestDTO.port();
+        this.status = clientRequestDTO.status();
     }
 
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getClientName() {
-        return clientName;
-    }
-
-    public void setClientName(String clientName) {
-        this.clientName = clientName;
-    }
-
-    public String getProtocol() {
-        return protocol;
-    }
-
-    public void setProtocol(String protocol) {
-        this.protocol = protocol;
-    }
-
-    public String getDomain() {
-        return domain;
-    }
-
-    public void setDomain(String domain) {
-        this.domain = domain;
-    }
-
-    public String getPort() {
-        return port;
-    }
-
-    public void setPort(String port) {
-        this.port = port;
-    }
-
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ClientEntity that)) return false;
-        return Objects.equals(id, that.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
 }
