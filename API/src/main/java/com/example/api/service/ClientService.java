@@ -1,6 +1,7 @@
 package com.example.api.service;
 
-import com.example.api.entity.Client;
+import com.example.api.dto.ClientDTO;
+import com.example.api.entity.ClientEntity;
 import com.example.api.repository.ClientRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,24 +17,26 @@ public class ClientService {
         this.repository = clientRepository;
     }
 
-    public List<Client> getAllSystems(){
-
-        return repository.findAll();
+    public List<ClientDTO> getAllSystems() {
+        List<ClientEntity> systems = repository.findAll();
+        return systems.stream().map(ClientDTO::new).toList();
     }
 
-    public void createClient(Client client){
-
-        repository.save(client);
-
+    public void createClient(ClientDTO clientDTO){
+        ClientEntity clientEntity = new ClientEntity(clientDTO);
+        repository.save(clientEntity);
     }
 
-    public void updateClient(Client client){
-        repository.save(client);
+    public ClientDTO updateClient(ClientDTO clientDTO){
+        ClientEntity clientEntity = new ClientEntity(clientDTO);
+        return new ClientDTO( repository.save(clientEntity));
 
 
     }
 
     public void deleteClient(Long id){
-        repository.deleteById(id);
+
+        ClientEntity clientEntity = repository.findById(id).get();
+        repository.delete(clientEntity);
     }
 }
