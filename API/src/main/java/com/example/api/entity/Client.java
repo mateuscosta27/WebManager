@@ -15,7 +15,57 @@ public class Client {
     @Column(name = "dominio", nullable = false)
     private String domain;
     @Column(name = "porta", nullable = false)
-    private String port;
+    private Integer port;
     @Column(name = "situacao", nullable = false)
     private boolean status;
+
+
+    public Client(){}
+    public Client(String clientName, String protocol, String domain, Integer port, boolean status) {
+        this.clientName = clientName;
+        this.protocol = protocol;
+        this.domain = domain;
+        this.port = port;
+        this.status = status;
+    }
+
+    public String getClientName() {
+        return clientName;
+    }
+
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
+    }
+
+    public String getProtocol() {
+        return protocol;
+    }
+
+    public void setProtocol(String protocol) {
+        this.protocol = protocol;
+    }
+
+    public String getDomain() {
+        return domain;
+    }
+
+    public void setDomain(String domain) {
+        this.domain = domain;
+    }
+
+    public Integer getPort() {
+        return port;
+    }
+
+    public void setPort(Integer port) {
+        this.port = port;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 }

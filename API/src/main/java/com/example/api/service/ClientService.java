@@ -3,6 +3,7 @@ package com.example.api.service;
 import com.example.api.entity.Client;
 import com.example.api.repository.ClientRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -28,6 +29,7 @@ public class ClientService {
 
     public void updateClient(Client client){
         repository.save(client);
+
 
     }
 

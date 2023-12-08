@@ -16,7 +16,7 @@ public class ClientController {
         this.clientService = clientService;
     }
 
-    private ClientService clientService;
+    private final ClientService clientService;
 
 
     @GetMapping
